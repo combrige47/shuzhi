@@ -3,6 +3,7 @@ from scipy.interpolate import CubicSpline
 import matplotlib.pyplot as plt
 
 
+
 def read_tsp(path):
     lines = open(path, 'r').readlines()
     assert 'NODE_COORD_SECTION\n' in lines
