@@ -2,8 +2,6 @@ import numpy as np
 from scipy.interpolate import CubicSpline
 import matplotlib.pyplot as plt
 
-
-
 def read_tsp(path):
     lines = open(path, 'r').readlines()
     assert 'NODE_COORD_SECTION\n' in lines
@@ -22,15 +20,6 @@ def read_tsp(path):
         tmpline.append(float(line[2]))
         tmp.append(tmpline)
         datax=tmp
-    # for line in data:
-    #     line = line.strip().split(' ')
-    #     if line[0] == 'EOF':
-    #         continue
-    #     tem=[]
-    #     tem.append(float(line[1]))
-    #     tem.append(-float(line[2]))
-    #     ymp.append(tem)
-    #     datay=ymp
     data=datax+datay
     return data
 data=read_tsp('project7\data.la')
@@ -39,9 +28,6 @@ datay = []
 for x in data:
     datax.append(x[0])
     datay.append(x[1])
-# print(datax)
-# print(datay)
-
 
 # 输入数据点
 x = np.array(datax)
@@ -53,7 +39,8 @@ x_interp = np.array(insert_x)
 # 执行三次样条插值
 cs = CubicSpline(x, y)
 y_interp = cs(x_interp)
-print(y_interp)
+for i in range(len(x_interp)):
+    print("横坐标:",x_interp[i],"预测纵坐标:",y_interp[i])
 
 # 绘制原始数据点和插值结果
 plt.xlim((0, 550))

@@ -2,6 +2,8 @@ import random
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
 
 
 class GA(object):
@@ -231,8 +233,8 @@ class GA(object):
             self.best_record.append(1./best_score)
             print(i,1./best_score,tmp_best_one)
         print("最短路径为：",1./best_score,"最优路线为：",tmp_best_one)
-        with open ('shuzhi\project6\\result.txt','a') as f:
-            f.write(str(tmp_best_one)+str(1./best_score)+'\n')
+        # with open ('shuzhi\project6\\result.txt','a') as f:
+        #     f.write(str(tmp_best_one)+str(1./best_score)+'\n')
         return self.location[BEST_LIST], 1. / best_score
 
 
@@ -260,18 +262,18 @@ def read_tsp(path):
     return data
 
 
-data = read_tsp('shuzhi\project6\data\st10.tsp')
+data = read_tsp('project6\data\st10.tsp')  #该处需注意读取正确的数据文件
 
 data = np.array(data)
 data = data[:, 1:]
 Best, Best_path = math.inf, None
 
-model = GA(num_city=data.shape[0], num_total=25, iteration=50, data=data.copy())
+model = GA(num_city=data.shape[0], num_total=25, iteration=200, data=data.copy())
 path, path_len = model.run()
 if path_len < Best:
     Best = path_len
     Best_path = path
-# 加上一行因为会回到起点
+
 fig, axs = plt.subplots(2, 1, sharex=False, sharey=False)
 axs[0].scatter(Best_path[:, 0], Best_path[:,1])
 Best_path = np.vstack([Best_path, Best_path[0]])

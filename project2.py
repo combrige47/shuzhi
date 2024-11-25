@@ -53,10 +53,10 @@ def newton_iter(X0, err):
             # 迭代公式
             X0 = X1 - np.dot(hess_inv, grad)
             count += 1
-            print('第',count,'次迭代:','x1=',X0[0],'x2=',X0[1])
+            print('第',count,'次迭代:','x1=',X0[0][0],'x2=',X0[1][0])
     print('迭代次数为:',count)
-    print('迭代结果为',X0)
-    print('最终结果为',fu(X0[0],X0[1]))
+    print('迭代结果为',X0[0][0],X0[1][0])
+    print('最终结果为',fu(X0[0],X0[1])[0])
 # 设置初始点
 X0 = np.array([[100],[1]])
 err = 1e-10

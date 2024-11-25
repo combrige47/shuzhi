@@ -34,4 +34,4 @@ def f(x,n):
 if __name__ == '__main__':
     for n in range(0,10):
         Tn_list = compute_Tn(f, x_min=0, x_max=1,n=n,err=1e-6)
-        print(Tn_list,n)
+        print("积分值为：",Tn_list,"n为",n)
