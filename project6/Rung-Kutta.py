@@ -8,12 +8,18 @@ def eluer(rangee,h,fun,x0,y0):
         u[i+1] = u[i] + h * fun(x[i],u[i])
     plt.plot(x,u,label = "eluer")
     return u
-rangee = 1
+t = 0.
+dt = .1
+ts =  []
+def func(y, t):
+    return t * math.sqrt(y)
+while t <= 10:
+    t += dt
+    ts.append(t)
+rangee = 10
 fun = lambda x,y:y-2*x/y
- 
-# implicit_euler(rangee,0.0001,fun,0,1)
-# order_4_runge_kutta(rangee,0.0001,fun,0,1)
-# order_3_runge_kutta(rangee,0.0001,fun,0,1)
+exact = [(t ** 2 + 4) ** 2 / 16. for t in ts]
+plt.plot(ts, exact, label='exact')
 eluer(rangee,0.1,fun,0,1)
 plt.legend()
 plt.show()

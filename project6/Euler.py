@@ -16,7 +16,7 @@ if __name__=='__main__':
     ys, ts = [], []
     def func(y, t):
         return t * math.sqrt(y)
-    while t <= 10:
+    while t <= 50:
         y = runge_kutta(y, t, dt, func)
         t += dt
         ys.append(y)
